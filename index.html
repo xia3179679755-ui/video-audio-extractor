@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f5f7f6" />
+    <title>音轨提取器</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="topbar">
+        <a class="brand" href="#" aria-label="音轨提取器首页">
+          <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>
+          <span>音轨提取器</span>
+        </a>
+        <span class="local-note"><span class="status-dot"></span>本地处理</span>
+      </header>
+
+      <section class="workspace" aria-labelledby="page-title">
+        <div class="intro">
+          <p class="eyebrow">VIDEO TO AUDIO</p>
+          <h1 id="page-title">从视频中提取声音</h1>
+          <p class="lede">选择一个视频，导出为可保存、可播放的音频文件。</p>
+        </div>
+
+        <div class="tool-grid">
+          <section class="source-panel" aria-label="视频文件">
+            <div class="panel-heading">
+              <span class="step-number">01</span>
+              <h2>添加视频</h2>
+            </div>
+            <label class="dropzone" id="dropzone" for="file-input">
+              <input id="file-input" type="file" accept="video/*,.mkv,.avi,.mov,.webm,.flv,.m4v" />
+              <span class="upload-icon" aria-hidden="true"></span>
+              <strong>拖放视频到这里</strong>
+              <span>或从设备中选择文件</span>
+              <em>MP4、MOV、MKV、WebM 等常见格式</em>
+            </label>
+            <div class="file-card is-hidden" id="file-card">
+              <div class="file-icon" aria-hidden="true"></div>
+              <div class="file-details">
+                <strong id="file-name"></strong>
+                <span id="file-meta"></span>
+              </div>
+              <button class="icon-button" id="remove-file" type="button" aria-label="移除视频" title="移除视频">×</button>
+            </div>
+          </section>
+
+          <section class="settings-panel" aria-label="导出设置">
+            <div class="panel-heading">
+              <span class="step-number">02</span>
+              <h2>导出设置</h2>
+            </div>
+            <div class="settings-stack">
+              <fieldset>
+                <legend>音频格式</legend>
+                <div class="format-options" role="radiogroup" aria-label="音频格式">
+                  <label class="format-option is-selected"><input type="radio" name="format" value="mp3" checked /><span>MP3</span></label>
+                  <label class="format-option"><input type="radio" name="format" value="wav" /><span>WAV</span></label>
+                  <label class="format-option"><input type="radio" name="format" value="aac" /><span>AAC</span></label>
+                </div>
+              </fieldset>
+              <label class="select-field" for="quality">
+                <span>音频质量</span>
+                <select id="quality">
+                  <option value="128k">标准 · 128 kbps</option>
+                  <option value="192k" selected>高 · 192 kbps</option>
+                  <option value="320k">最高 · 320 kbps</option>
+                </select>
+              </label>
+            </div>
+            <p class="format-hint" id="format-hint">MP3 适用于大多数播放器和设备。</p>
+          </section>
+        </div>
+
+        <section class="action-panel" aria-label="转换操作">
+          <div class="action-copy">
+            <span class="step-number">03</span>
+            <div><h2>准备好后开始提取</h2><p id="action-message">添加视频文件以继续。</p></div>
+          </div>
+          <button class="primary-button" id="extract-button" type="button" disabled>
+            <span class="button-icon" aria-hidden="true"></span><span>提取音频</span>
+          </button>
+        </section>
+
+        <section class="progress-panel is-hidden" id="progress-panel" aria-live="polite">
+          <div class="progress-heading"><strong id="progress-label">正在准备转换器...</strong><span id="progress-value">0%</span></div>
+          <div class="progress-track"><div id="progress-bar"></div></div>
+          <button id="cancel-button" class="text-button" type="button">取消转换</button>
+        </section>
+
+        <section class="result-panel is-hidden" id="result-panel" aria-live="polite">
+          <div class="result-symbol" aria-hidden="true">✓</div>
+          <div class="result-copy"><h2>音频已提取完成</h2><p id="result-meta"></p></div>
+          <audio id="audio-player" controls></audio>
+          <a class="download-button" id="download-link" download><span aria-hidden="true">↓</span>下载音频</a>
+        </section>
+      </section>
+
+      <footer>文件只在此设备的浏览器内处理，不会上传至服务器。</footer>
+    </main>
+
+    <script src="ffmpeg/ffmpeg.js?v=offline-1"></script>
+    <script src="ffmpeg/util.js?v=offline-1"></script>
+    <script src="app.js?v=offline-1"></script>
+  </body>
+</html>
