@@ -8,6 +8,6 @@
 
 FFmpeg 转码组件已随项目保存，转换时不需要网络；视频文件也不会上传。请通过本地 HTTP 服务或 GitHub Pages 打开页面，不能直接双击 `index.html`。
 
-## Windows 便携版
+## Windows 启动文件
 
-运行 `build-windows-app.ps1` 后会生成 `dist/AudioExtractor.exe`。双击该文件会启动本地离线服务并自动打开工具页面；关闭启动器窗口则停止服务。
+下载 `OpenAudioExtractor.bat` 后双击即可在默认浏览器打开已发布的网页。它需要网络访问 GitHub Pages。

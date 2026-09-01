@@ -1,6 +1,2 @@
 .DS_Store
 Thumbs.db
-.build-tools/
-build/
-dist/
-*.spec
